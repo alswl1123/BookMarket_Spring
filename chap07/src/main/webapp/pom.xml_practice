@@ -1,0 +1,28 @@
+스프링 시큐리티 의존 라이브러리
+
+<dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-web</artifactId> //로그인 페이지 때문에 사용
+	<version>5.6.3</version>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-config</artifactId>
+	<version>5.6.3</version>
+</dependency>
+
+------------------------------------------------------------------------
+
+파일 업로드 의존 라이브러리
+<dependency>
+	<groupId>commons-fileupload</groupId>
+	<artifactId>commons-fileupload</artifactId>
+	<version>1.4</version>
+</dependency>
+
+<dependency>
+	<groupId>commons-io</groupId>
+	<artifactId>commons-io</artifactId>
+</dependency>
+
