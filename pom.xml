@@ -7,6 +7,17 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>SpringBookMarket Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>
+  	<!-- 자바의 버전을 정의   -->
+	<java-version>17</java-version>
+	<!-- 스프링의 버전을 정의   -->
+	<org.springframework-version>5.3.19</org.springframework-version>
+	<!-- aspectj의 버전을 정의   -->
+	<org.aspectj-version>1.9.9.1</org.aspectj-version>
+	<!-- slf4j의 버전을 정의   -->
+	<org.slf4j-version>1.7.36</org.slf4j-version>
+  
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
