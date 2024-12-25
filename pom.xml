@@ -16,8 +16,8 @@
 	<org.aspectj-version>1.9.9.1</org.aspectj-version>
 	<!-- slf4j의 버전을 정의   -->
 	<org.slf4j-version>1.7.36</org.slf4j-version>
-  
   </properties>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
