@@ -4,13 +4,6 @@
 								http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
 	<display-name>Archetype Created Web Application</display-name>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml /WEB-INF/spring/security-context.xml </param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
 	
 	<!-- Spring MVC의 DispatcherServlet을 등록하고 모든 웹 요청(/)을 이 서블릿으로 처리하도록 설정 -->
 	<servlet>
