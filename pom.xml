@@ -17,14 +17,102 @@
 	<!-- slf4j의 버전을 정의   -->
 	<org.slf4j-version>1.7.36</org.slf4j-version>
   </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+  
+  <!-- 의존성 -->
+  <!-- 메이븐 프로젝트의 필수 의존성 목록
+1. spring-context : 스프링 핵심 기능 (DI, IoC 등)
+2. spring-webmvc : 스프링 MVC 웹 기능
+3. aspectjrt : AOP 기능
+4. slf4j : 로깅 프레임워크
+5. javax.inject : 자바 표준 DI 애노테이션
+6. servlet/jsp/jstl : 웹 애플리케이션 필수 라이브러리
+7. junit : 테스트 프레임워크
+-->
+<dependencies>
+   <!-- Spring 관련 의존성 -->
+   <!-- 1. spring-context: 스프링 핵심 기능(DI, IoC, AOP 등) 제공
+        - exclusions로 commons-logging을 제외하여 slf4j와의 충돌 방지 -->
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-context</artifactId>
+       <version>${org.springframework-version}</version>
+       <exclusions>
+           <exclusion>
+               <groupId>commons-logging</groupId>
+               <artifactId>commons-logging</artifactId>
+           </exclusion>
+       </exclusions>
+   </dependency>
+
+   <!-- 2. spring-webmvc: 스프링 MVC 패턴 웹 개발 기능 제공 
+        - @Controller, RequestMapping 등의 웹 관련 어노테이션 포함 -->
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-webmvc</artifactId>
+       <version>${org.springframework-version}</version>
+   </dependency>
+
+   <!-- 3. AspectJ: 자바 AOP 확장 기능 제공 
+        - 관점 지향 프로그래밍 구현을 위한 라이브러리 -->
+   <dependency>
+       <groupId>org.aspectj</groupId>
+       <artifactId>aspectjrt</artifactId>
+       <version>${org.aspectj-version}</version>
+   </dependency>
+
+   <!-- 4. Logging 관련 의존성 -->
+   <!-- slf4j-api: 로깅 퍼사드 역할, 다양한 로깅 프레임워크를 통합하여 사용 -->
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>${org.slf4j-version}</version>
+   </dependency>
+   <!-- jcl-over-slf4j: Commons Logging을 slf4j로 연결 -->
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>jcl-over-slf4j</artifactId>
+       <version>${org.slf4j-version}</version>
+   </dependency>
+
+   <!-- 5. @Inject: 자바 표준 DI 어노테이션 사용을 위한 의존성 -->
+   <dependency>
+       <groupId>javax.inject</groupId>
+       <artifactId>javax.inject</artifactId>
+       <version>1</version>
+   </dependency>
+
+   <!-- 6. Servlet/JSP 관련 의존성 -->
+   <!-- servlet-api: 서블릿 기능 제공 -->
+   <dependency>
+       <groupId>javax.servlet</groupId>
+       <artifactId>servlet-api</artifactId>
+       <version>2.5</version>
+       <scope>provided</scope>
+   </dependency>
+   <!-- jsp-api: JSP 기능 제공 -->
+   <dependency>
+       <groupId>javax.servlet.jsp</groupId>
+       <artifactId>jsp-api</artifactId>
+       <version>2.1</version>
+       <scope>provided</scope>
+   </dependency>
+   <!-- jstl: JSP 표준 태그 라이브러리 -->
+   <dependency>
+       <groupId>javax.servlet</groupId>
+       <artifactId>jstl</artifactId>
+       <version>1.2</version>
+   </dependency>
+
+   <!-- 7. Test: JUnit 테스트 프레임워크 
+        - scope가 test인 이유: 테스트 시에만 사용되고 배포 시에는 제외됨 -->
+   <dependency>
+       <groupId>junit</groupId>
+       <artifactId>junit</artifactId>
+       <version>4.12</version>
+       <scope>test</scope>
+   </dependency>
+</dependencies>
+
   <build>
     <finalName>SpringBookMarket</finalName>
   </build>
