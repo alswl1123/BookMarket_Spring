@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping; //이걸 추가하면서
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod; //이건 사용x
+import org.springframework.web.servlet.ModelAndView; //추가
 
 import com.springmvc.domain.Book;
 import com.springmvc.service.BookService;
@@ -19,17 +19,19 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	@GetMapping //지워버려서 추가함. GetMapping 으로 수정1
+	@GetMapping
 	public String requestBookList(Model model) {
 		List<Book> list = bookService.getAllBookList();
 		model.addAttribute("bookList", list);
 		return "books";
 	}
 
-	@GetMapping("/all") //수정2
-	public String requestAllBooks(Model model) {
+	@GetMapping("/all") //수정
+	public ModelAndView requestAllBooks() {
+		ModelAndView modelAndView = new ModelAndView();
 		List<Book> list = bookService.getAllBookList();
-		model.addAttribute("bookList", list);
-		return "books";
+		modelAndView.addObject("bookList", list);
+		modelAndView.setViewName("books");
+		return modelAndView;
 	}
 }
