@@ -18,9 +18,9 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	//@RequestMapping(value="/books", method=RequestMethod.GET) 이거였는데
-	@RequestMapping //이렇게 수정
-	public String requestBookList(Model model) {
+
+	@RequestMapping("/all")
+	public String requestAllBooks(Model model) {
 		List<Book> list = bookService.getAllBookList();
 		model.addAttribute("bookList", list);
 		return "books";
