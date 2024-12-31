@@ -20,4 +20,20 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+	<!-- web.xml 파일에서 <init-param> 태그는 서블릿(Servlet) 또는 필터(Filter)에 
+		특정 초기화 매개변수 값을 전달하기 위해 사용. 서블릿이나 필터가 실행될 때 설정되어 
+		동작을 맞춤화하는 데 사용. 개발자는 코드와 설정을 분리하여 설정 값을 쉽게 변경하거나 관리할 수 있음. -->
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
