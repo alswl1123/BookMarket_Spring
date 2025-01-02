@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView; //추가
 
 import com.springmvc.domain.Book;
+import com.springmvc.repository.BookRepositoryImpl;
 import com.springmvc.service.BookService;
 
 @Controller
@@ -51,5 +53,12 @@ public class BookController {
 			Set<Book> booksByFilter = bookService.getBookListByFilter(bookFilter);
 			model.addAttribute("bookList", booksByFilter);
 			return "books";
+	}
+	
+	@GetMapping("/book")
+	public String requestBookById(@RequestParam("id") String bookId, Model model) {
+		Book bookById = bookService.getBookById(bookId);
+		model.addAttribute("book", bookById);
+		return "book";
 	}
 }
