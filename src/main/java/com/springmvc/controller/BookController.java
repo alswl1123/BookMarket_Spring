@@ -61,4 +61,9 @@ public class BookController {
 		model.addAttribute("book", bookById);
 		return "book";
 	}
+	
+	@GetMapping("/add")
+	public String requestAddBookForm(Book book) {
+		return "addBook";
+	}
 }
