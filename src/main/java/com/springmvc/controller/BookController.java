@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView; //추가
@@ -63,7 +65,21 @@ public class BookController {
 	}
 	
 	@GetMapping("/add")
-	public String requestAddBookForm(Book book) {
+	public String requestAddBookForm(@ModelAttribute("NewBook") Book book) {
 		return "addBook";
+	}
+	
+	
+	//매개변수 수준
+	@PostMapping("/add")
+	public String submitAddNewBook(@ModelAttribute("NewBook") Book book) {
+		bookService.setNewBook(book);
+		return "redirect:books"; //url 에 ? 붙음(파라미터를 가져가서 쓰지는 않는다)
+	}
+	
+	//메서드 수준
+	@ModelAttribute
+	public void addAttributes(Model model) {
+		model.addAttribute("addTitle","신규 도서 등록"); //key, value 구조
 	}
 }
