@@ -22,8 +22,9 @@
 		</div>
 	</div>
 	<div class="container">
-		<form:form modelAttribute="book" class="form-horizontal">
+		<form:form modelAttribute="Newbook" class="form-horizontal"> <!-- 수정 -->
 		<fieldset>
+		<legend>${addTitle}</legend> <!-- 추가. 모델에서 전달된 제목 출력. -->
 		<div class="form-group row">
 			<label class="col-sm-2 control-label">도서ID</label>
 			<div class="col-sm-3">
