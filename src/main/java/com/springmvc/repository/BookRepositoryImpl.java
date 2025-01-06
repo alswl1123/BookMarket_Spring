@@ -106,5 +106,9 @@ public class BookRepositoryImpl implements BookRepository {
 			return bookInfo;
 	}
 	
+	public void setNewBook(Book book) {
+		listOfBooks.add(book);
+	}
+	
 	
 }
