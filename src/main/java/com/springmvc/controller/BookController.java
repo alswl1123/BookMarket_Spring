@@ -7,6 +7,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder; //이 import 필요
+import org.springframework.web.bind.annotation.InitBinder; //이 import 필요 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -82,4 +84,13 @@ public class BookController {
 	public void addAttributes(Model model) {
 		model.addAttribute("addTitle","신규 도서 등록"); //key, value 구조
 	}
+	//주로 컨트롤러에서 사용되며, 데이터 바인딩과 관련된 설정을 처리
+	//HTTP 요청 파라미터를 객체에 자동으로 매핑할 때 발생할 수 있는 타입 불일치 문제를 해결
+	//입력값 검증 로직을 일관되게 적용
+	//보안상 중요한 필드의 바인딩을 제한
+	//날짜, 숫자 등의 형식을 일관되게 처리
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setAllowedFields("bookId", "name", "unitPrice", "author", "description", "publisher", "category", "unitsInStock", "totalPages", "releaseDate", "condition");	
+		}
 }
