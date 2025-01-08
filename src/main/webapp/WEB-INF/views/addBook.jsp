@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<form:form modelAttribute="Newbook" class="form-horizontal"> <!-- 수정 -->
+		<form:form modelAttribute="NewBook" class="form-horizontal"> <!-- 수정. 대소문자 오류 주의하자 -->
 		<fieldset>
 		<legend>${addTitle}</legend> <!-- 추가. 모델에서 전달된 제목 출력. -->
 		<div class="form-group row">

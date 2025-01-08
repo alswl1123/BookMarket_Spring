@@ -76,7 +76,7 @@ public class BookController {
 	@PostMapping("/add")
 	public String submitAddNewBook(@ModelAttribute("NewBook") Book book) {
 		bookService.setNewBook(book);
-		return "redirect:books"; //url 에 ? 붙음(파라미터를 가져가서 쓰지는 않는다)
+		return "redirect:/books"; //url 에 ? 붙음(파라미터를 가져가서 쓰지는 않는다) // 슬래시(/)를 붙여서 절대경로를 반환해야 함.
 	}
 	
 	//메서드 수준
