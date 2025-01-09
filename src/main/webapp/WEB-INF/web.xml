@@ -4,19 +4,21 @@
 								http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
 	<display-name>Archetype Created Web Application</display-name>
-	
-	<!-- context-param: 전체 애플리케이션의 루트 컨텍스트 설정
-		 init-param: DispatcherServlet의 웹 컨텍스트 설정 -->
-	<!--  데이터베이스 설정, 보안 설정 등은 root-context.xml에
-		  웹 관련 설정(뷰 리졸버, 인터셉터 등)은 servlet-context.xml에 분리하여 효율적 관리 가능 -->
+
+	<!-- context-param: 전체 애플리케이션의 루트 컨텍스트 설정 init-param: DispatcherServlet의 
+		웹 컨텍스트 설정 -->
+	<!-- 데이터베이스 설정, 보안 설정 등은 root-context.xml에 웹 관련 설정(뷰 리졸버, 인터셉터 등)은 servlet-context.xml에 
+		분리하여 효율적 관리 가능 -->
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml
-					/WEB-INF/spring/security-context.xml
+		<param-value>/WEB-INF/spring/root-context.xml,/WEB-INF/spring/security-context.xml
 		</param-value>
 	</context-param>
-
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 	<!-- Spring MVC의 DispatcherServlet을 등록하고 모든 웹 요청(/)을 이 서블릿으로 처리하도록 설정 -->
 	<servlet>
@@ -58,4 +60,8 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>home</welcome-file>
+	</welcome-file-list>
 </web-app>

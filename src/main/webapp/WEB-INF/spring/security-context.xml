@@ -7,7 +7,7 @@
         				http://www.springframework.org/schema/security
     				    http://www.springframework.org/schema/security/spring-security.xsd">
     
-    <http auto-config="true">                         <!-- 함수 -->
+    <http use-expressions="true">                         <!-- 함수 -->
         <intercept-url pattern="/books/add" access="hasAuthority('ROLE_ADMIN')" />
         <!-- /books/add 로 매핑하면 /login 으로 forward 됨 -->
         <form-login login-page="/login"
