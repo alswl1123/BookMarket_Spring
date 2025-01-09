@@ -22,6 +22,13 @@
 		</div>
 	</div>
 	<div class="container">
+		<!-- 로그아웃 추가 -->
+		<div class="float-right">
+			<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+				<input type="submit" class="btn btn-sm btn-success" value="Logout"/>
+			</form:form>
+		</div>
+		<br><br>
 		<form:form modelAttribute="NewBook" class="form-horizontal"> <!-- 수정. 대소문자 오류 주의하자 -->
 		<fieldset>
 		<legend>${addTitle}</legend> <!-- 추가. 모델에서 전달된 제목 출력. -->
