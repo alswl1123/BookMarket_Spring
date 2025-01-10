@@ -10,7 +10,7 @@
 	<!-- 컨트롤러 매핑 설정 -->
 	<annotation-driven enable-matrix-variables="true"/>
 
-	<!-- 정적 리소스 설정 -->
+	<!-- 정적 리소스 설정. 이미지 관련 설정에도 중요. -->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- 뷰 매핑 설정 -->
