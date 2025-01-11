@@ -29,7 +29,8 @@
 			</form:form>
 		</div>
 		<br><br>
-		<form:form modelAttribute="NewBook" class="form-horizontal"> <!-- 수정. 대소문자 오류 주의하자 -->
+		<!-- action 이랑 enctype 추가(이미지 업로드) -->
+		<form:form modelAttribute="NewBook" action="./add?${_csrf.parameterName}=${_csrf.token}" class="form-horizontal" enctype="multipart/form-data">
 		<fieldset>
 		<legend>${addTitle}</legend> <!-- 추가. 모델에서 전달된 제목 출력. -->
 		<div class="form-group row">
@@ -93,6 +94,13 @@
 				<form:radiobutton path="condition" value="New"/>New
 				<form:radiobutton path="condition" value="Old"/>Old
 				<form:radiobutton path="condition" value="E-Book"/>E-Book
+			</div>
+		</div>
+		<!-- 이미지 항목 추가 -->
+		<div class="form-group row">
+			<label class="col-sm-2 control-label">도서이미지</label>
+			<div class="col-sm-7">
+			<form:input path="bookImage" type="file" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
