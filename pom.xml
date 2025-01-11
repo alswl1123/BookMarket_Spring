@@ -84,14 +84,6 @@
        <version>1</version>
    </dependency>
 
-   <!-- 6. Servlet/JSP 관련 의존성 -->
-   <!-- servlet-api: 서블릿 기능 제공 -->
-   <dependency>
-       <groupId>javax.servlet</groupId>
-       <artifactId>servlet-api</artifactId>
-       <version>2.5</version>
-       <scope>provided</scope>
-   </dependency>
    <!-- jsp-api: JSP 기능 제공 -->
    <dependency>
        <groupId>javax.servlet.jsp</groupId>
@@ -106,7 +98,7 @@
        <version>1.2</version>
    </dependency>
 
-   <!-- 7. Test: JUnit 테스트 프레임워크 
+   <!-- 6. Test: JUnit 테스트 프레임워크 
         - scope가 test인 이유: 테스트 시에만 사용되고 배포 시에는 제외됨 -->
    <dependency>
        <groupId>junit</groupId>
@@ -139,6 +131,14 @@
     	<groupId>commons-io</groupId>
    		<artifactId>commons-io</artifactId>
     	<version>${commons-io-version}</version>
+	</dependency>
+	
+	<!-- 이 부분이 있어야 HttpServletRequest 쪽에 오류 안 남 -->
+	<dependency>
+    	<groupId>jakarta.servlet</groupId>
+    	<artifactId>jakarta.servlet-api</artifactId>
+    	<version>4.0.4</version>
+    	<scope>provided</scope>
 	</dependency>
 </dependencies>
 
