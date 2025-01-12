@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.domain.Book;
+import com.springmvc.exception.CategoryException;
 import com.springmvc.service.BookService;
 
 
@@ -52,6 +53,12 @@ public class BookController {
 	@GetMapping("/{category}") //추가
 	public String requestBooksByCategory(@PathVariable("category") String bookCategory, Model model) {
 		List<Book> booksByCategory=bookService.getBookListByCategory(bookCategory);
+		
+		//이 부분 추가됨
+		if(booksByCategory == null || booksByCategory.isEmpty()) {
+			throw new CategoryException();
+		}
+		
 		model.addAttribute("bookList", booksByCategory);
 		return "books";
 	}
