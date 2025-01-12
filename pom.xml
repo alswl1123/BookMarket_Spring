@@ -133,13 +133,6 @@
     	<version>${commons-io-version}</version>
 	</dependency>
 	
-	<!-- 이 부분이 있어야 HttpServletRequest 쪽에 오류 안 남 -->
-	<dependency>
-    	<groupId>jakarta.servlet</groupId>
-    	<artifactId>jakarta.servlet-api</artifactId>
-    	<version>4.0.4</version>
-    	<scope>provided</scope>
-	</dependency>
 </dependencies>
 
   <build>
