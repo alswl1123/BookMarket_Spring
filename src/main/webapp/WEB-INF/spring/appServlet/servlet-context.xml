@@ -27,5 +27,10 @@
 	<beans:bean id = "multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10240000"/>
 	</beans:bean>
+	
+	<!-- 로그 인터셉터 추가 -->
+	<interceptors>
+		<beans:bean class= "com.springmvc.interceptor.MonitoringInterceptor"/>
+	</interceptors>
 
 </beans:beans>
