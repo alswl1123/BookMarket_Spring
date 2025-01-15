@@ -10,9 +10,25 @@
 		</layout>
 	</appender>
 	
+	<!-- 파일에 출력하기 -->
+	<appender name="monitor" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="false"/>
+		<param name="maxFileSize" value="10KB"/> <!-- max size 넘으면 롤링 일어남 -->
+		<param name="maxBackupIndex" value="5"/>
+		<param name="file" value="c:/logs/monitor.log"/> <!-- 여기까지가 핵심 파라미터들 -->
+		<layout class="org.apache.log4j.PatternLayout"> <!-- 출력 폼 -->
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="info"/>
+			<param name="LevelMax" value="info"/> <!-- 인포 등급만 출력 -->
+		</filter>
+	</appender>
+	
 	<!-- Application Loggers -->
 	<logger name="com.springmvc">
-		<level value="info" />
+		<level value="info"/>
+		<appender-ref ref="monitor"/>
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
