@@ -14,7 +14,7 @@
 	<org.springframework-version>5.3.19</org.springframework-version>
 	<!-- aspectj의 버전을 정의   -->
 	<org.aspectj-version>1.9.9.1</org.aspectj-version>
-	<!-- slf4j의 버전을 정의. 이 부분 확인해야 함. HandlerInterceptor 관련. -->
+	<!-- HandlerInterceptorAdapter 관련. -->
 	<org.slf4j-version>1.7.36</org.slf4j-version>
 	<security.version>5.6.3</security.version>
 	<commons-fileupload-version>1.4</commons-fileupload-version>
@@ -65,19 +65,26 @@
 
    <!-- 4. Logging 관련 의존성 -->
    <!-- slf4j-api: 로깅 퍼사드 역할, 다양한 로깅 프레임워크를 통합하여 사용 -->
-   <!-- 이 부분도 확인해야 함. HandlerInterceptor -->
+   <!-- HandlerInterceptorAdapter 관련 -->
    <dependency>
        <groupId>org.slf4j</groupId>
        <artifactId>slf4j-api</artifactId>
        <version>${org.slf4j-version}</version>
    </dependency>
    <!-- jcl-over-slf4j: Commons Logging을 slf4j로 연결 -->
-   <!-- 이 부분도 확인해야 함. HandlerInterceptor -->
+   <!-- HandlerInterceptor -->
    <dependency>
        <groupId>org.slf4j</groupId>
        <artifactId>jcl-over-slf4j</artifactId>
        <version>${org.slf4j-version}</version>
    </dependency>
+   
+   <!-- 로그 콘솔 출력 위해 추가 -->
+   <dependency>
+   	 <groupId>org.slf4j</groupId>
+   	 <artifactId>slf4j-log4j12</artifactId>
+  	  <version>${org.slf4j-version}</version>
+	</dependency>
 
    <!-- 5. @Inject: 자바 표준 DI 어노테이션 사용을 위한 의존성 -->
    <dependency>
