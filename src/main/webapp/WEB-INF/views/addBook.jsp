@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
 <head>
@@ -18,7 +19,7 @@
 	</nav>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">도서 등록</h1>		
+			<h1 class="display-3"><spring:message code="addBook.form.title.label"/></h1>
 		</div>
 	</div>
 	<div class="container">
@@ -28,84 +29,83 @@
 				<input type="submit" class="btn btn-sm btn-success" value="Logout"/>
 			</form:form>
 		</div>
+		
 		<br><br>
-		<!-- action 이랑 enctype 추가(이미지 업로드) -->
 		<form:form modelAttribute="NewBook" action="./add?${_csrf.parameterName}=${_csrf.token}" class="form-horizontal" enctype="multipart/form-data">
 		<fieldset>
-		<legend>${addTitle}</legend> <!-- 추가. 모델에서 전달된 제목 출력. -->
+		<legend><spring:message code="addBook.form.subtitle.label"/></legend>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">도서ID</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.bookId.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="bookId" class="form-control"/> <!-- form 태그를 누락하지 않도록 유의하자 -->
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">도서명</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.name.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="name" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">가격</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.unitPrice.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="unitPrice" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">저자</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.author.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="author" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">상세정보</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.description.label"/></label>
 			<div class="col-sm-5">
 				<form:textarea path="description" cols="50" rows="2"
 					class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">출판사</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.publisher.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="publisher" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">분야</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.category.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="category" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">재고수</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.unitsInStock.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="unitsInStock" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">출판일</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.releaseDate.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="releaseDate" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">상태</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.condition.label"/></label>
 			<div class="col-sm-3">
 				<form:radiobutton path="condition" value="New"/>New
 				<form:radiobutton path="condition" value="Old"/>Old
 				<form:radiobutton path="condition" value="E-Book"/>E-Book
 			</div>
 		</div>
-		<!-- 이미지 항목 추가 -->
 		<div class="form-group row">
-			<label class="col-sm-2 control-label">도서이미지</label>
+			<label class="col-sm-2 control-label"><spring:message code="addBook.form.bookImage.label"/></label>
 			<div class="col-sm-7">
 			<form:input path="bookImage" type="file" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-primary" value="등록"/>
+				<input type="submit" class="btn btn-primary" value="<spring:message code="addBook.form.button.label"/>"/>
 			</div>
 		</div>
 		</fieldset>
