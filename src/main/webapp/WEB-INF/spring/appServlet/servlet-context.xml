@@ -33,5 +33,11 @@
 		<beans:bean class= "com.springmvc.interceptor.MonitoringInterceptor"/>
 		<beans:bean class= "com.springmvc.interceptor.AuditingInterceptor"/> <!-- 추가됨 -->
 	</interceptors>
+	
+	<!-- 다국어 처리 -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basename" value="messages"/>
+		<beans:property name="defaultEncoding" value="UTF-8"/>
+	</beans:bean>
 
 </beans:beans>
