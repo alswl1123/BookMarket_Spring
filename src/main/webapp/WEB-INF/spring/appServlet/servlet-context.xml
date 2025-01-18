@@ -8,7 +8,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">
 
 	<!-- 컨트롤러 매핑 설정 -->
-	<annotation-driven enable-matrix-variables="true"/>
+	<annotation-driven enable-matrix-variables="true" />
 
 	<!-- 정적 리소스 설정. 이미지 관련 설정에도 중요. -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -19,25 +19,39 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<!-- 자바 클래스의 빈 객체 설정(com.springmvc.* 이라고 표시하면 해당 패키지의 모든 클래스의 객체를 만들어서 보관 후 자동 주입함) -->
-	<context:component-scan base-package="com.springmvc.*"/>
-	
+
+	<!-- 자바 클래스의 빈 객체 설정(com.springmvc.* 이라고 표시하면 해당 패키지의 모든 클래스의 객체를 만들어서 보관 
+		후 자동 주입함) -->
+	<context:component-scan
+		base-package="com.springmvc.*" />
+
 	<!-- 멀티파트(이미지 업로드) -->
-	<beans:bean id = "multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="10240000"/>
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10240000" />
 	</beans:bean>
-	
+
 	<!-- 로그 인터셉터 추가 -->
 	<interceptors>
-		<beans:bean class= "com.springmvc.interceptor.MonitoringInterceptor"/>
-		<beans:bean class= "com.springmvc.interceptor.AuditingInterceptor"/> <!-- 추가됨 -->
+		<beans:bean
+			class="com.springmvc.interceptor.MonitoringInterceptor" />
+		<beans:bean
+			class="com.springmvc.interceptor.AuditingInterceptor" />
+		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="language"/>
+		</beans:bean>
 	</interceptors>
 	
+	<!-- 다국어 변경하기 -->
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<beans:property name="defaultLocale" value="ko"/>
+	</beans:bean>
+
 	<!-- 다국어 처리 -->
-	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<beans:property name="basename" value="messages"/>
-		<beans:property name="defaultEncoding" value="UTF-8"/>
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basename" value="messages" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
 
 </beans:beans>
