@@ -44,17 +44,27 @@
 			<div class="col-sm-3">
 				<form:input path="bookId" class="form-control"/> <!-- form 태그를 누락하지 않도록 유의하자 -->
 			</div>
+			<!-- 이 부분이 추가됨 -->
+			<div class="col-sm-6">
+				<form:errors path="bookId" class="text-danger"/>
+			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 control-label"><spring:message code="addBook.form.name.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="name" class="form-control"/>
 			</div>
+			<div class="col-sm-6">
+				<form:errors path="name" class="text-danger"/>
+			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 control-label"><spring:message code="addBook.form.unitPrice.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="unitPrice" class="form-control"/>
+			</div>
+			<div class="col-sm-6">
+				<form:errors path="unitPrice" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group row">
