@@ -6,10 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -86,8 +88,13 @@ public class BookController {
 	
 	
 	//순서1.파일이름 2.빈 파일 생성 3.파일 기록(transferTo)
+	//유효성 검사 추가
 	@PostMapping("/add")
-	public String submitAddNewBook(@ModelAttribute("NewBook") Book book, HttpServletRequest request) {
+	public String submitAddNewBook(@Valid @ModelAttribute("NewBook") Book book, BindingResult result, HttpServletRequest request) {
+		
+		if(result.hasErrors()) {
+			return "addBook";
+		}
 		
 		MultipartFile bookImage = book.getBookImage();
 		String save = request.getServletContext().getRealPath("/resources/images");
