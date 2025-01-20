@@ -45,7 +45,7 @@ public class BookController {
 		return "books";
 	}
 
-	@GetMapping("/all") //수정
+	@GetMapping("/all")
 	public ModelAndView requestAllBooks() {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Book> list = bookService.getAllBookList();
@@ -54,11 +54,10 @@ public class BookController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/{category}") //추가
+	@GetMapping("/{category}") 
 	public String requestBooksByCategory(@PathVariable("category") String bookCategory, Model model) {
 		List<Book> booksByCategory=bookService.getBookListByCategory(bookCategory);
 		
-		//이 부분 추가됨
 		if(booksByCategory == null || booksByCategory.isEmpty()) {
 			throw new CategoryException();
 		}
@@ -89,9 +88,11 @@ public class BookController {
 	
 	//순서1.파일이름 2.빈 파일 생성 3.파일 기록(transferTo)
 	//유효성 검사 추가
-	@PostMapping("/add")
+	//커맨드 객체에 @Valid 가 선언되어 있는지, 오류 처리 내용이 작성되어 있는지 확인
+	@PostMapping("/add")          //이 부분이랑
 	public String submitAddNewBook(@Valid @ModelAttribute("NewBook") Book book, BindingResult result, HttpServletRequest request) {
 		
+		//이 부분
 		if(result.hasErrors()) {
 			return "addBook";
 		}
