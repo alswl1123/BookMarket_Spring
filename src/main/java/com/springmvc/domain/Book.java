@@ -8,7 +8,10 @@ import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.springmvc.validator.BookId;
+
 public class Book {
+	@BookId //사용자 정의 애너테이션
 	@Pattern(regexp = "ISBN[1-9]+", message = "{Pattern.NewBook.bookId}")
 	private String bookId; // 도서 ID
 
