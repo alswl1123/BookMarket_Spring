@@ -44,7 +44,7 @@
 			<div class="col-sm-3">
 				<form:input path="bookId" class="form-control"/> <!-- form 태그를 누락하지 않도록 유의하자 -->
 			</div>
-			<!-- 이 부분이 추가됨 -->
+			<!-- 이 부분도 확인해야 함. -->
 			<div class="col-sm-6">
 				<form:errors path="bookId" class="text-danger"/>
 			</div>
