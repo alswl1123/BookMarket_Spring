@@ -44,7 +44,7 @@
 			<div class="col-sm-3">
 				<form:input path="bookId" class="form-control"/> <!-- form 태그를 누락하지 않도록 유의하자 -->
 			</div>
-			<!-- 이 부분도 확인해야 함. -->
+			<!-- 이 부분 확인해야 함. -->
 			<div class="col-sm-6">
 				<form:errors path="bookId" class="text-danger"/>
 			</div>
@@ -96,6 +96,9 @@
 			<label class="col-sm-2 control-label"><spring:message code="addBook.form.unitsInStock.label"/></label>
 			<div class="col-sm-3">
 				<form:input path="unitsInStock" class="form-control"/>
+			</div>
+			<div class="col-sm-6">
+				<form:errors path="unitsInStock" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group row">
