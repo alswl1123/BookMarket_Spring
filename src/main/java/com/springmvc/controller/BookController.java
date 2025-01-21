@@ -29,6 +29,7 @@ import com.springmvc.domain.Book;
 import com.springmvc.exception.BookIdException;
 import com.springmvc.exception.CategoryException;
 import com.springmvc.service.BookService;
+import com.springmvc.validator.UnitsInStockValidator;
 
 
 @Controller
@@ -37,6 +38,10 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	//1. UnitsInStockValidator 의 인스턴스 선언
+	private UnitsInStockValidator unitsInStockValidator; 
 	
 	@GetMapping
 	public String requestBookList(Model model) {
@@ -92,7 +97,6 @@ public class BookController {
 	@PostMapping("/add")          //이 부분이랑
 	public String submitAddNewBook(@Valid @ModelAttribute("NewBook") Book book, BindingResult result, HttpServletRequest request) {
 		
-		//이 부분
 		if(result.hasErrors()) {
 			return "addBook";
 		}
@@ -127,6 +131,7 @@ public class BookController {
 	//날짜, 숫자 등의 형식을 일관되게 처리
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
+		binder.setValidator(unitsInStockValidator); //2. 생성한 unitsInValidator 설정 
 		binder.setAllowedFields("bookId", "name", "unitPrice", "author", "description", "publisher", "category", "unitsInStock", "totalPages", "releaseDate", "condition", "bookImage");	
 		}
 	
