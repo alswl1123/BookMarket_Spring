@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.springmvc.validator.BookId;
 
-public class Book {
+public class Book { //수정된 부분 확인함
 	@BookId //사용자 정의 애너테이션
 	@Pattern(regexp = "ISBN[1-9]+", message = "{Pattern.NewBook.bookId}")
 	private String bookId; // 도서 ID
