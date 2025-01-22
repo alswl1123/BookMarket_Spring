@@ -29,6 +29,7 @@ import com.springmvc.domain.Book;
 import com.springmvc.exception.BookIdException;
 import com.springmvc.exception.CategoryException;
 import com.springmvc.service.BookService;
+import com.springmvc.validator.BookValidator;
 import com.springmvc.validator.UnitsInStockValidator;
 
 
@@ -40,8 +41,8 @@ public class BookController {
 	private BookService bookService;
 	
 	@Autowired
-	//1. UnitsInStockValidator 의 인스턴스 선언
-	private UnitsInStockValidator unitsInStockValidator; 
+	//UnitsInStockValidator 클래스를 BookValidator 클래스로 수정
+	private BookValidator bookValidator; 
 	
 	@GetMapping
 	public String requestBookList(Model model) {
@@ -131,7 +132,7 @@ public class BookController {
 	//날짜, 숫자 등의 형식을 일관되게 처리
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.setValidator(unitsInStockValidator); //2. 생성한 unitsInValidator 설정 
+		binder.setValidator(bookValidator); //이 부분도 수정됨
 		binder.setAllowedFields("bookId", "name", "unitPrice", "author", "description", "publisher", "category", "unitsInStock", "totalPages", "releaseDate", "condition", "bookImage");	
 		}
 	
