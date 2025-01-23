@@ -1,0 +1,12 @@
+package com.springmvc.service;
+
+import com.springmvc.domain.Cart;
+
+public interface CartService {
+
+	Cart create(Cart cart);
+	Cart read(String cartId);
+	
+	
+
+}
