@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
 	rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/controllers.js"></script>
 <title>도서 상세 정보</title>
 </head>
 <body>
@@ -56,10 +57,12 @@
 					<b>재고수</b> : ${book.unitsInStock}
 				<h4>${book.unitPrice}원</h4>
 				<br>
+				<form:form name="addForm" method="put">
 				<p>
-					<a href="#" class="btn btn-primary">도서주문 &raquo;</a> 
+					<a href="javascript:addTocart('../cart/add/${book.bookId}')" class="btn btn-primary">도서주문 &raquo;</a> 
 					<a href="<c:url value="/cart"/>" class="btn btn-warning">장바구니 &raquo;</a>
 					<a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
+				</form:form>
 			</div>
 		</div>
 		<hr>
