@@ -75,7 +75,20 @@ public class Cart {
 		}
 	
 	
+	public void addCartItem(CartItem item) {
+		String bookId = item.getBook().getBookId(); //현재 등록하기 위한 도서 ID 가져오기
 	
+		//도서 ID가 cartItems 객체에 등록되어 있는지 여부 확인
+		if(cartItems.containsKey(bookId)) {
+			CartItem cartItem = cartItems.get(bookId); //등록된 도서 ID에 대한 정보 가져오기
+			//등록된 도서 ID의 개수 추가 저장
+			cartItem.setQuantity(cartItem.getQuantity() + item.getQuantity());
+			cartItems.put(bookId, cartItem); //등록된 도서 ID 에 대한 변경 정보(cartItem) 저장
+		} else {
+			cartItems.put(bookId, item); //도서 ID에 대한 도서 정보(item) 저장
+		}
+		updateGrandTotal(); //총액 갱신
+	}
 	
 	
 }
