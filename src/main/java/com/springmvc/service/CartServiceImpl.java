@@ -18,4 +18,17 @@ public class CartServiceImpl implements CartService {
 		return cartRepository.read(cartId);
 	}
 
+	public CartRepository getCartRepository() {
+		return cartRepository;
+	}
+
+	@Override //마우스 우클릭 > Source > override 로도 작성 가능하다
+	public void update(String cartId, Cart cart) {
+		cartRepository.update(cartId, cart);
+	}
+
+
+	
+	
+
 }
