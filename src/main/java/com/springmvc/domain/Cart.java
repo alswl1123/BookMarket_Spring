@@ -90,5 +90,9 @@ public class Cart {
 		updateGrandTotal(); //총액 갱신
 	}
 	
-	
+	public void removeCartItem(CartItem item) {
+		String bookId = item.getBook().getBookId();
+		cartItems.remove(bookId); // bookId 도서 삭제
+		updateGrandTotal(); 	  // 총액 갱신
+	}
 }
