@@ -71,4 +71,21 @@ public class CartController {
 		cart.addCartItem(new CartItem(book));
 		cartService.update(sessionId, cart); //세션 ID에 대한 장바구니 갱신하기
 	}
+	
+	@PutMapping("/remove/{bookId}")
+	@ResponseStatus(value=HttpStatus.NO_CONTENT)
+	public void removeCartByItem(@PathVariable String bookId, HttpServletRequest request) {
+		//장바구니 ID인 세션ID 가져오기
+		String sessionId = request.getSession(true).getId();
+		Cart cart = cartService.create(new Cart(sessionId));
+		if(cart == null)
+			cart = cartService.create(new Cart(sessionId));
+			//경로 변수 bookId에 대한 정보 얻어오기
+		Book book = bookService.getBookById(bookId);
+		if(book == null)
+			throw new IllegalArgumentException(bookId);
+		//bookId에 대한 도서 정보를 장바구니에서 삭제하기
+		cart.removeCartItem(new CartItem(book));
+		cartService.update(sessionId, cart); //세션 ID에 대한 장바구니 갱신하기
+	}
 }
