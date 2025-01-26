@@ -3,8 +3,11 @@ package com.springmvc.repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.springmvc.domain.Cart;
 
+@Repository
 public class CartRepositoryImpl implements CartRepository {
 	
 	private Map<String, Cart> listOfCarts;
