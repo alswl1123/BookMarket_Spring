@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -87,5 +88,11 @@ public class CartController {
 		//bookId에 대한 도서 정보를 장바구니에서 삭제하기
 		cart.removeCartItem(new CartItem(book));
 		cartService.update(sessionId, cart); //세션 ID에 대한 장바구니 갱신하기
+	}
+	
+	@DeleteMapping("/{cartId}")
+	@ResponseStatus(value=HttpStatus.NO_CONTENT)
+	public void deleteCartList(@PathVariable(value="cartId") String cartId) {
+		cartService.delete(cartId);
 	}
 }
