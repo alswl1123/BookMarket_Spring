@@ -24,6 +24,9 @@
 		</div>
 	</div>
 	<div class="container">
+	<form:form name="clearForm" method="delete">
+		<a href="javascript:clearCart()" class="btn btn-danger pull-left">삭제하기</a>	
+	</form:form>
 		<div>
 			<a href="#" class="btn btn-success float-right">주문하기</a>
 		</div>
@@ -57,6 +60,7 @@
 			</table>
 			<a href="<c:url value="/books"/>" class="btn btn-secondary">&laquo;
 				쇼핑 계속하기</a>
+		</div>
 		</div>
 		<hr>
 		<footer>
