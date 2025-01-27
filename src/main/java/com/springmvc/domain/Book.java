@@ -1,5 +1,7 @@
 package com.springmvc.domain;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,7 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.springmvc.validator.BookId;
 
-public class Book { //수정된 부분 확인함
+public class Book implements Serializable {
+	
+	//serialVersionUID 는 직렬화를 할 때 메타 정보로 저장되는 id 값. 서로 다른 자바 컴파일러 구현체 사이에서도 동일한 serialVersionUID 값을 얻으려면
+	//명시적으로 serialVersionUID 값을 선언해야 함. 가능한 private 으로 선언.
+	//serialVersionUID 대신 @SuppressWarnings 로 변경해도 됨. @SuppresWarnings("serial") 을 클래스 위에 선언.
+	private static final long serialVersionUID = -7715651009026349175L;
+	
 	@BookId //사용자 정의 애너테이션
 	@Pattern(regexp = "ISBN[1-9]+", message = "{Pattern.NewBook.bookId}")
 	private String bookId; // 도서 ID
