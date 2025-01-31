@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+							http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+<!-- var 요소를 사용하여 플로 변수 선언 -->
+<!-- 플로 변수 이름 order 는 Order DTO 를 의미함. 이 DTO 는 java.io.Serializable 인터페이스로 구현되어 있어야 함. -->							
+<var name="order" class="com.springmvc.domain.Order"/><!-- DTO 객체 설정 -->
+
+<action-state id="addCartToOrder"> <!-- action-state 로 함수 호출 가능 -->
+	<evaluate expression="cartServiceImpl.validateCart(requestParameters.cartId)" result="order.cart"/> <!-- 함수 호출. order 속성인 cart 에 저장 -->
+	<transition to="orderCartWarning" on-exception="com.springmvc.exception.CartException"/><!-- exception이 발생하면 orderCartWarning으로 이동 -->
+	<transition to="orderCustomerInfo"/> <!-- 정상 처리 되면 orderCustomerInfo.jsp 로 이동 -->
+</action-state>
+
+<!-- view-state 의 id 속성은 플로 내에서 유일해야 함 -->
+<!-- model 속성은 커맨드 객체로 var 요소에 선언된 플로 변수여야 함. -->
+<!-- view 속성을 사용해서 출력하는 뷰 페이지 설정. view 속성 정의 안 하면 view-state 요소 내의 id 속성이 뷰 페이지 이름과 동일해야 함 -->
+<!-- 이벤트 ID가 customerInfo이면 뷰 페이지 orderShippingInfo로 이동 -->
+<view-state id="orderCustomerInfo" model="order">
+	<transition on="customerInfo" to="orderShippingInfo"/>
+</view-state>
+
+<!-- 이벤트 ID 가 shippingInfo 이면 뷰 페이지 orderConfirmation로 이동 -->
+<!-- 이벤트 ID 가 backToCustomerInfo 이면 뷰 페이지 orderCustomerInfo로 이동 -->
+<view-state id="orderShippingInfo" model="order">
+	<transition on="shippingInfo" to="orderConfirmation"/>
+	<transition on="backToCustomerInfo" to="orderCustomerInfo"/> <!-- on 은 이벤트, to 는 jsp -->
+</view-state>
+
+<!-- 이벤트 ID 가 orderConfirmed 이면 뷰 페이지 confirmOrder로 이동 -->
+<!-- 이벤트 ID 가 backToShippingInfo 이면 뷰 페이지 orderShippingInfo로 이동 -->
+<view-state id="orderConfirmation">
+	<transition on="orderConfirmed" to="confirmOrder"/>
+	<transition on="backToShippingInfo" to="orderShippingInfo"/>
+</view-state>
+
+<!-- 메서드 실행 후 반환 갑승ㄹ 커맨드 객체 order 의 orderId 속성에 저장 후 뷰 페이지 orderFinished 로 이동 -->
+<action-state id="confirmOrder">
+	<evaluate expression="orderServiceImpl.saveOrder(order)" result="order.orderId"/><!-- 함수 호출 -->
+	<transition to="orderFinished"/><!-- 이동 -->
+</action-state>
+
+<!-- 뷰 페이지 orderCartWarning이면 endState 상태로 이동해서 페이지 흐름 종료 -->
+<view-state id="orderCartWarning">
+	<transition to="endState"/>
+</view-state>
+
+<!-- 뷰 페이지 orderFinished면 endState 상태로 이동해서 페이지 흐름 종료 -->
+<view-state id="orderFinished" model="order">
+	<transition to="endState"/>
+</view-state>
+
+<!-- endState 로 페이지 흐름 종료 -->
+<end-state id="endState"/>
+
+
+<!-- 현재 상태가 orderCancelled면 orderCartWarning.jsp 출력 -->
+<end-state id="orderCancelled" view="orderCartWarning.jsp"/>
+
+<!-- 모든 뷰에 해당. 이벤트 ID 로 cancel 이 발생하면 endState 상태로 이동. -->
+<global-transitions>
+	<transition on="cancel" to="endState"/>
+</global-transitions>
+
+</flow>
