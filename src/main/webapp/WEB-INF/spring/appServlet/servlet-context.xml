@@ -81,6 +81,7 @@
 		</beans:property>
 	</beans:bean>
 	
+	<!-- 플로우 -->
 	<webflow:flow-registry id="flowRegistry">
 		<webflow:flow-location path="/WEB-INF/flows/order/order-flow.xml" id="order"/> <!-- flow-location : 위치 알려주는 역할 -->
 	</webflow:flow-registry>
@@ -93,6 +94,16 @@
 	
 	<beans:bean id="flowHandlerAdapter" class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
 		<beans:property name="flowExecutor" ref="flowExecutor"/>
+	</beans:bean>
+	
+	<!-- 타일즈 -->
+	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+		<beans:property name="order" value="1"/>	
+	</beans:bean>
+	
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions" value="/WEB-INF/tiles/tiles.xml"/>
 	</beans:bean>
 
 </beans:beans>
