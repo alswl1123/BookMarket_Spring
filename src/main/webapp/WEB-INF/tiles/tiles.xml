@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="base-Template" template="/WEB-INF/tiles/layout/baseLayout.jsp">
+		<put-attribute name="title" value="Sample Title"/>
+		<put-attribute name="heading" value=""/>
+		<put-attribute name="subheading" value=""/>
+		<put-attribute name="menu" value="/WEB-INF/tiles/template/menu.jsp"></put-attribute>
+		<put-attribute name="content" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp"/>
+	</definition>
+	
+	<!-- definition 요소의 기본 템플릿 이름을 base-Template 으로 정의하고 기본 템플릿 페이지는 /WEB-INF/tiles/layout/ 경로에 있는 baseLayout.jsp 파일에 정의 -->
+	<!-- put-attribute 요소를 사용하여 기본 템플릿 이름을 title, menu, heading, subheading, content, footer 로 지정함 -->
+</tiles-definitions>
