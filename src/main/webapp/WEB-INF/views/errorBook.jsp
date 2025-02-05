@@ -8,6 +8,7 @@
 <title>예외 처리</title>
 </head>
 <body>
+<!-- 
 	<nav class="navbar navbar-expand navbar-dark bg-dark">
 		<div class="container">
 			<div class="navbar-header">
@@ -15,6 +16,7 @@
 			</div>
 		</div>
 	</nav>
+ -->
 	<div class="jumbotron">
 		<div class="container">
 			<h2 class="alert alert-danger">

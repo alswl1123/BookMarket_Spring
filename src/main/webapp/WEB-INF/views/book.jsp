@@ -10,6 +10,7 @@
 <title>도서 상세 정보</title>
 </head>
 <body>
+<!-- 
 	<nav class="navbar navbar-expand navbar-dark bg-dark">
 		<div class="container">
 			<div class="navbar-header">
@@ -22,7 +23,7 @@
 			<h1 class="display-3">도서 정보</h1>
 		</div>
 	</div>
-
+-->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
@@ -65,10 +66,12 @@
 				</form:form>
 			</div>
 		</div>
+<!-- 
 		<hr>
 		<footer>
 			<p>&copy; BookMarket</p>
 		</footer>
+ -->
 	</div>
 </body>
 </html>

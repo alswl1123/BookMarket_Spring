@@ -10,6 +10,7 @@
 <title>도서 등록</title>
 </head>
 <body>
+<!-- 
 	<nav class="navbar navbar-expand navbar-dark bg-dark">
 		<div class="container">
 			<div class="navbar-header">
@@ -22,6 +23,7 @@
 			<h1 class="display-3"><spring:message code="addBook.form.title.label"/></h1>
 		</div>
 	</div>
+ -->
 	<div class="container">
 		<!-- 로그아웃 추가 -->
 		<div class="float-right">
@@ -128,10 +130,12 @@
 		</div>
 		</fieldset>
 		</form:form>
+<!-- 
 		<hr>
 	<footer>
 		<p>&copy; BookMarket</p>
 	</footer>
+ -->
 	</div>
 </body>
 </html>

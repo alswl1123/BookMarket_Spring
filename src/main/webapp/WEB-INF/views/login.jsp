@@ -7,6 +7,7 @@
 <title>로그인</title>
 </head>
 <body>
+<!-- 
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 		<div class="container">
 			<div class="navbar-header">
@@ -19,6 +20,7 @@
 			<h1 class="display-3">로그인</h1>		
 		</div>
 	</div>
+ -->
 	<div class="container col-md-4">
 		<div class="text-center">
 			<h3 class="form-signed-heading">Please login</h3>

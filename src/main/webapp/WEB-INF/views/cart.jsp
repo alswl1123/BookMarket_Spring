@@ -11,6 +11,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/controllers.js"></script>
 </head>
 <body>
+<!-- 
 	<nav class="navbar navbar-expand navbar-dark bg-dark">
 		<div class="container">
 			<div class="navbar-header">
@@ -23,6 +24,7 @@
 			<h1 class="display-3">장바구니</h1>
 		</div>
 	</div>
+ -->
 	<div class="container">
 	<form:form name="clearForm" method="delete">
 		<a href="javascript:clearCart()" class="btn btn-danger pull-left">삭제하기</a>	
@@ -62,9 +64,11 @@
 				쇼핑 계속하기</a>
 		</div>
 		</div>
+<!-- 
 		<hr>
 		<footer>
 			<p>&copy; BookMarket</p>
 		</footer>
+ -->
 </body>
 </html>
