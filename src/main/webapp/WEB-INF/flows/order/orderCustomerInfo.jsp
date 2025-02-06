@@ -12,6 +12,7 @@
 <body>
 <!-- orderCustomerInfo.jsp 파일은 웹 플로우 정의 파일 order-flow.xml 의 view-state 요소에 설정한 뷰 페이지 -->
 
+<!-- 
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 		<div class="container">
 			<div class="navbar-header">
@@ -24,7 +25,8 @@
 			<h1 class="display-3">고객정보</h1>		
 		</div>
 	</div>
-	
+ -->
+ 	
 	<div class="container">
 		<form:form modelAttribute="order.customer" class="form-horizontal">
 		<fieldset>
