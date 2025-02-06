@@ -82,7 +82,8 @@
 	</beans:bean>
 	
 	<!-- 플로우 -->
-	<webflow:flow-registry id="flowRegistry">
+	<webflow:flow-registry id="flowRegistry"
+			flow-builder-services="flowBuilderServices"> <!-- 추가함 -->
 		<webflow:flow-location path="/WEB-INF/flows/order/order-flow.xml" id="order"/> <!-- flow-location : 위치 알려주는 역할 -->
 	</webflow:flow-registry>
 	
@@ -105,5 +106,12 @@
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions" value="/WEB-INF/tiles/tiles.xml"/>
 	</beans:bean>
-
+	
+	<!-- 웹 플로우와 타일즈 연동 -->
+	<!-- 웹 플로우를 구축하는데 사용되는 서비스나 설정 등을 커스터마이징 -->
+	<webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="viewFactoryCreator"/>
+	<!-- 이미 등록된 타일즈 뷰 리졸버 빈인 tilesViewResolver를 스프링 웹 플로우 내에서 사용하려면 MvcViewFactoryCreater 클래스를 빈으로 등록해야 함 -->	
+		<beans:bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+			<beans:property name="viewResolvers" ref="tilesViewResolver"/>
+		</beans:bean>
 </beans:beans>
