@@ -6,12 +6,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+//필요한 import 요소들
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import org.springframework.stereotype.Repository;
 import com.springmvc.domain.Book;
 import com.springmvc.exception.BookIdException;
 
 @Repository //어노테이션 필수
 public class BookRepositoryImpl implements BookRepository {
+	
+	private JdbcTemplate template;
+	
+	@Autowired
+	public void setJdbctemplate(DataSource dataSource) {
+		this.template = new JdbcTemplate(dataSource);
+	}
 
 	private List<Book> listOfBooks = new ArrayList<Book>();
 	
