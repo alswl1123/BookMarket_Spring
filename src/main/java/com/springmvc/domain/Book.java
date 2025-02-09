@@ -38,6 +38,7 @@ public class Book implements Serializable {
 	private String releaseDate;      // 출판일(월/년)
 	private String condition;		 // 신규 도서 또는 중고 도서 또는 전자책
 	private MultipartFile bookImage; // 도서 이미지
+	private String fileName;         // 문자열 타입의 fileName 필드 추가
 	
 	// 기본 생성자 : 마우스 우클릭 > Source > Generate Constructors from Superclass > Object() 체크 > Generate 클릭
 	public Book() { 
@@ -140,6 +141,14 @@ public class Book implements Serializable {
 
 	public void setBookImage(MultipartFile bookImage) {
 		this.bookImage = bookImage;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 }
