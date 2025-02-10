@@ -59,17 +59,22 @@ public class BookRepositoryImpl implements BookRepository {
 
 	@Override
 	public List<Book> getAllBookList() {
-		// TODO Auto-generated method stub
+		//DB의 book 테이블에 등록된 모든 전체 도서 목록 조회
+		String SQL = "SELECT * From book"; //SQL문을 간단히 작성
+		List<Book> listOfBooks = template.query(SQL, new BookRowMapper()); //query() 메서드 안 쓰면 queryForList() 메서드 써도 됨. 그러나 RowMapper 대신 book.set 형태로 작성
 		return listOfBooks;
 	}
 	
-	public List<Book> getBookListByCategory(String category) {
+	public List<Book> getBookListByCategory(String category) { //도서 분류와 일치하는 도서 목록 반환
 		List<Book> booksByCategory = new ArrayList<Book>();
-		for(int i = 0; i<listOfBooks.size(); i++) {
-			Book book = listOfBooks.get(i);
-			if(category.equalsIgnoreCase(book.getCategory()))
-				booksByCategory.add(book);
-		}
+		//for(int i = 0; i<listOfBooks.size(); i++) {
+		//	Book book = listOfBooks.get(i);
+		//	if(category.equalsIgnoreCase(book.getCategory()))
+		//		booksByCategory.add(book);
+		//}
+		
+		String SQL = "SELECT * FROM book where b_category LIKE '%" + category + "%'";
+		booksByCategory = template.query(SQL, new BookRowMapper());
 		return booksByCategory;
 	}
 
@@ -77,26 +82,34 @@ public class BookRepositoryImpl implements BookRepository {
 	public Set<Book> getBookListByFilter(Map<String, List<String>> filter) {
 		Set<Book> booksByPublisher = new HashSet<Book>();
 		Set<Book> booksByCategory = new HashSet<Book>();
+		Set<String> criterias = filter.keySet();
 		
-		Set<String> booksByFilter = filter.keySet();
+		//Set<String> booksByFilter = filter.keySet();
 		
-		if(booksByFilter.contains("publisher")) {
+		//if(booksByFilter.contains("publisher")) {
+		if(criterias.contains("publisher")) {
 			for(int j = 0; j<filter.get("publisher").size(); j++) {
 				String publisherName = filter.get("publisher").get(j);
-				for(int i = 0; i<listOfBooks.size(); i++) {
-					Book book = listOfBooks.get(i);
+				//for(int i = 0; i<listOfBooks.size(); i++) {
+				//	Book book = listOfBooks.get(i);
 					
-					if(publisherName.equalsIgnoreCase(book.getPublisher()))
-						booksByPublisher.add(book);
-				}
+				//	if(publisherName.equalsIgnoreCase(book.getPublisher()))
+				//		booksByPublisher.add(book);
+				//}
+				
+				String SQL = "SELECT * FROM book where b_publisher LIKE '%" + publisherName + "%'";
+				booksByPublisher.addAll(template.query(SQL, new BookRowMapper()));
 			}
 		}
 		
-		if(booksByFilter.contains("category")) {
+		//if(booksByFilter.contains("category")) {
+		if(criterias.contains("category")) {
 			for(int i=0; i<filter.get("category").size(); i++) {
 				String category = filter.get("category").get(i);
-				List<Book> list = getBookListByCategory(category);
-				booksByCategory.addAll(list);
+				//List<Book> list = getBookListByCategory(category);
+				//booksByCategory.addAll(list);
+				String SQL = "SELECT * FROM book where b_category LIKE '%" + category + "%'";
+				booksByCategory.addAll(template.query(SQL, new BookRowMapper()));
 			}
 		}
 		
@@ -105,15 +118,22 @@ public class BookRepositoryImpl implements BookRepository {
 	}
 
 	@Override
-	public Book getBookById(String bookId) {
+	public Book getBookById(String bookId) { //도서 아이디와 일치하는 도서 반환
 		Book bookInfo = null;
-		for(int i = 0; i<listOfBooks.size(); i++) {
-			Book book = listOfBooks.get(i);
-			if(book!=null && book.getBookId()!=null && book.getBookId().equals(bookId)) {
-				bookInfo = book;
-				break;
-			}
-		}
+		//for(int i = 0; i<listOfBooks.size(); i++) {
+		//	Book book = listOfBooks.get(i);
+		//	if(book!=null && book.getBookId()!=null && book.getBookId().equals(bookId)) {
+		//		bookInfo = book;
+		//		break;
+		//	}
+		//} 이 부분을
+		
+		String SQL = "SELECT count(*) FROM book where b_bookId=?"; //레코드 개수 가져옴. 도서 ID가 등록될 때만 데이터베이스에 접근해 해당 도서 조회
+		int rowCount = template.queryForObject(SQL, Integer.class, bookId);
+		if(rowCount != 0) {
+			SQL = "SELECT * FROM book where b_bookId=?";
+			bookInfo = template.queryForObject(SQL, new Object[] {bookId}, new BookRowMapper()); //도서ID의 도서는 1개만 있으므로 queryForObject() 메서드 사용
+		} //이렇게 변경
 		
 		//if(bookInfo == null)
 		//	throw new IllegalArgumentException("도서 ID가 " + bookId + "인 해당 도서를 찾을 수 없습니다.");
@@ -121,7 +141,7 @@ public class BookRepositoryImpl implements BookRepository {
 		
 		if(bookInfo == null)
 			throw new BookIdException(bookId); //import 필요함
-		return bookInfo;
+		return bookInfo; //이렇게 변경
 	}
 	
 	public void setNewBook(Book book) {
