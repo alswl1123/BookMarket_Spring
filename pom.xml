@@ -20,6 +20,7 @@
 	<commons-fileupload-version>1.4</commons-fileupload-version>
 	<commons-io-version>2.11.0</commons-io-version>
 	<org.apache.tiles-version>3.0.8</org.apache.tiles-version>
+	<security-version>5.6.3</security-version> <!-- 시큐리티 의존성 등록 -->
   </properties>
   
   <!-- 의존성 -->
@@ -200,6 +201,13 @@
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 		<version>8.0.24</version>
+	</dependency>
+	
+	<!-- 시큐리티 태그 -->
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-taglibs</artifactId>
+		<version>${security-version}</version>
 	</dependency>
 </dependencies>
 
