@@ -145,8 +145,12 @@ public class BookRepositoryImpl implements BookRepository {
 	}
 	
 	public void setNewBook(Book book) {
-		listOfBooks.add(book);
-	}
+		//listOfBooks.add(book); 이 부분 지우고
+		String SQL = "INSERT INTO book (b_bookId, b_name, b_unitPrice, b_author, b_description, b_publisher, b_category, b_unitsInStock, b_releaseDate, b_condition, b_fileName)" 
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		template.update(SQL, book.getBookId(), book.getName(), book.getUnitPrice(), book.getAuthor(), book.getDescription(), book.getPublisher(), book.getCategory(), book.getUnitsInStock(), book.getReleaseDate(), book.getCondition(), book.getFileName());
+	} //이 부분 작성
+	//setNewBook() 메서드는 데이터베이스의 book 테이블에 신규 도서 저장
 	
 	
 }
