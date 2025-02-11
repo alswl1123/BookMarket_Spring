@@ -28,7 +28,8 @@
 		<!-- 로그아웃 추가 -->
 		<div class="float-right">
 			<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-				<input type="submit" class="btn btn-sm btn-success" value="Logout"/>
+				<!-- <input type="submit" class="btn btn-sm btn-success" value="Logout"/> -->
+				<input type="submit" class="btn btn-success" value="Logout"/> <!-- 이렇게 수정 -->
 			</form:form>
 		</div>
 		
