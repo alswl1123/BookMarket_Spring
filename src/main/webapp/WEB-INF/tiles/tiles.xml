@@ -92,4 +92,12 @@
 		<put-attribute name="subheading" value="Invalid Cart"/>
 		<put-attribute name="content" value="/WEB-INF/flows/order/orderCartWarning.jsp"/>
 	</definition>
+	
+	<!-- 수정 페이지 폼 설정, 뷰 이름을 title, heading, subheading, content 등으로 정의, baseLayout의 레이아웃을 그대로 따름 -->
+	<definition name="updateForm" extends="base-Template">
+		<put-attribute name="title" value="Book"/>
+		<put-attribute name="heading" value="도서 수정"/>
+		<put-attribute name="subheading" value="Book Editing"/>
+		<put-attribute name="content" value="/WEB-INF/views/updateForm.jsp"/>
+	</definition>
 </tiles-definitions>
