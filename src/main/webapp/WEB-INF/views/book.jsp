@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
@@ -65,6 +66,9 @@
 					<a href="javascript:addTocart('../cart/add/${book.bookId}')" class="btn btn-primary">도서주문 &raquo;</a> 
 					<a href="<c:url value="/cart"/>" class="btn btn-warning">장바구니 &raquo;</a>
 					<a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
+					<sec:authorize access="isAuthenticated()">
+						<a href="<c:url value="/books/update?id=${book.bookId}"/>" class="btn btn-success">수정 &raquo;</a>
+					</sec:authorize>
 				</form:form>
 			</div>
 		</div>
