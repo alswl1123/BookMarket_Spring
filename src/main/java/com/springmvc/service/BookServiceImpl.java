@@ -38,4 +38,8 @@ public class BookServiceImpl implements BookService {
 	public void setNewBook(Book book) {
 		bookRepository.setNewBook(book);
 	}
+	
+	public void setUpdateBook(Book book) {
+		bookRepository.setUpdateBook(book);
+	}
 }
