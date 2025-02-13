@@ -152,5 +152,13 @@ public class BookRepositoryImpl implements BookRepository {
 	} //이 부분 작성
 	//setNewBook() 메서드는 데이터베이스의 book 테이블에 신규 도서 저장
 	
-	
+	public void setUpdateBook(Book book) {
+		if(book.getFileName() != null) {
+			String SQL = "UPDATE Book SET b_name=?, b_unitPrice=?, b_author=?, b_description=?, b_publisher=?, b_category=?, b_unitsInStock=?, b_releaseDate=?, b_condition=?, b_fileName=? where b_bookId=?";
+			template.update(SQL, book.getName(), book.getUnitPrice(), book.getAuthor(), book.getDescription(), book.getPublisher(), book.getCategory(), book.getUnitsInStock(), book.getReleaseDate(), book.getCondition(), book.getFileName(), book.getBookId());		
+		} else if(book.getFileName() == null) {
+			String SQL = "UPDATE Book SET b_name=?, b_unitPrice=?, b_author=?, b_description=?, b_publisher=?, b_category=?, b_unitsInStock=?, b_releaseDate=?, b_condition=? where b_bookId=?";
+			template.update(SQL, book.getName(), book.getUnitPrice(), book.getAuthor(), book.getDescription(), book.getPublisher(), book.getCategory(), book.getUnitsInStock(), book.getReleaseDate(), book.getCondition(), book.getBookId());		
+		}
+	}
 }
