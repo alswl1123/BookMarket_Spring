@@ -68,6 +68,7 @@
 					<a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
 					<sec:authorize access="isAuthenticated()">
 						<a href="<c:url value="/books/update?id=${book.bookId}"/>" class="btn btn-success">수정 &raquo;</a>
+						<a href="<c:url value="javascript:deleteConfirm('${book.bookId}')"/>" class="btn btn-danger">삭제 &raquo;</a>
 					</sec:authorize>
 				</form:form>
 			</div>
