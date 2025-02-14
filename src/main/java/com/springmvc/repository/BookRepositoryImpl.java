@@ -161,4 +161,9 @@ public class BookRepositoryImpl implements BookRepository {
 			template.update(SQL, book.getName(), book.getUnitPrice(), book.getAuthor(), book.getDescription(), book.getPublisher(), book.getCategory(), book.getUnitsInStock(), book.getReleaseDate(), book.getCondition(), book.getBookId());		
 		}
 	}
+	
+	public void setDeleteBook(String bookID) {
+		String SQL = "DELETE from Book where b_bookId=?";
+		this.template.update(SQL, bookID);
+	}
 }
