@@ -14,3 +14,8 @@ function clearCart() {
 	document.clearForm.submit();
 	window.location.reload();
 }
+
+function deleteConfirm(id) { //요청된 도서를 삭제할 때 확인 후 삭제하는 자바스크립트
+	if (confirm("삭제합니다!!") == true) location.href = "./delete?id=" + id;
+	else return;
+}
