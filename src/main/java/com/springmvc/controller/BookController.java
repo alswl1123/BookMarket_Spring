@@ -171,4 +171,9 @@ public class BookController {
 		return "redirect:/books";
 	}
 	
+	@RequestMapping(value="/delete")
+	public String getDeleteBookForm(Model model, @RequestParam("id") String bookId) {
+		bookService.setDeleteBook(bookId);
+		return "redirect:/books";
+	}
 }
